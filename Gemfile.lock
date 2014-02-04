@@ -1,0 +1,25 @@
+GEM
+  remote: http://rubygems.org/
+  specs:
+    ast (1.1.0)
+    coderay (1.1.0)
+    method_source (0.8.2)
+    nilio (1.0.0)
+    parser (2.0.0)
+      ast (~> 1.1)
+      slop (~> 3.4, >= 3.4.5)
+    pry (0.9.12.6)
+      coderay (~> 1.0)
+      method_source (~> 0.8)
+      slop (~> 3.4)
+    rjb (1.4.9)
+    slop (3.4.7)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  nilio
+  parser (~> 2.0.0.pre7)
+  pry
+  rjb
