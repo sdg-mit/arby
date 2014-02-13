@@ -12,6 +12,12 @@ aRby **requires** Ruby 1.9.3.  If you are currently using a different Ruby insta
  rvm use 1.9.3
  ```
  
+aRby also requires Java 1.6 or later (to run the Alloy Analyzer), and you must set your JAVA_HOME environment variable to point to your Java installation (either JRE or JDK), e.g., 
+
+```bash
+export JAVA_HOME="/etc/java-6-openjdk" ## or wherever you Java is installed
+```
+ 
 To download and install aRby, clone the Git repo, run `bundle install`, then run the unit tests by invoking the 'run_tests.sh' script:
 
  ```bash
