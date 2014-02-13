@@ -14,7 +14,7 @@ aRby requires **Ruby 1.9.3** or later (tested against *1.9.3-p327*, *2.0.0-p353*
  rvm use 2.1.0
  ```
  
-aRby also requires Java 1.6 or later (to run the Alloy Analyzer), and you must set your `JAVA_HOME` environment variable to point to your JDK installation (JRE is not enough), e.g., 
+aRby also requires Java 1.6 or later (to run the Alloy Analyzer), and you must set your `JAVA_HOME` environment variable to point to your **JDK** installation (JRE is not enough), e.g., 
 
 ```bash
 export JAVA_HOME="/etc/java-6-openjdk" ## or wherever you Java is installed
