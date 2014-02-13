@@ -1,11 +1,25 @@
+GIT
+  remote: https://github.com/aleksandarmilicevic/method_source.git
+  revision: c3e49bd036fe8f885e358dc03d687b52a2291b8e
+  specs:
+    method_source (0.8.3.1)
+
+GIT
+  remote: https://github.com/aleksandarmilicevic/sdg_utils.git
+  revision: 864697c1326a8036c7b49b2a997a7dc240308f8f
+  specs:
+    sdg_utils (0.0.1)
+      method_source (>= 0.8.3)
+      nilio
+      parser (>= 2.0.0.pre7)
+
 GEM
   remote: http://rubygems.org/
   specs:
     ast (1.1.0)
     coderay (1.1.0)
-    method_source (0.8.2)
     nilio (1.0.0)
-    parser (2.0.0)
+    parser (2.1.4)
       ast (~> 1.1)
       slop (~> 3.4, >= 3.4.5)
     pry (0.9.12.6)
@@ -19,7 +33,9 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  method_source (~> 0.8.3)!
   nilio
-  parser (~> 2.0.0.pre7)
+  parser (~> 2.1.4)
   pry
   rjb
+  sdg_utils!

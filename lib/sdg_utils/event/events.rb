@@ -4,9 +4,9 @@ module SDGUtils
     module EventHandler
       def call(event, params)
         sym = "handle_#{event.to_s}".to_sym
-        if self.respond_to? sym
+        if self.respond_to? sym, true
           self.send sym, params
-        elsif self.respond_to? :handler_missing
+        elsif self.respond_to? :handler_missing, true
           self.send :handler_missing, event, params
         end
       end
@@ -27,7 +27,7 @@ module SDGUtils
         fail "No callback provided" if listener.nil? && block.nil?
         fail "Can't provide both listener and block" if listener && block
         l = listener || block
-        fail "Listener #{l} does not respond to #call" unless l.respond_to?(:call)
+        fail "Listener #{l} does not respond to #call" unless l.respond_to?(:call, true)
         case events
         when Array
           events.each {|event|

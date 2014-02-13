@@ -89,7 +89,7 @@ module SDGUtils
           unless ret_module.class == Module
 
         mods_to_include.each do |m|
-          if ret_module.respond_to? @conf.include_module_mthd
+          if ret_module.respond_to? @conf.include_module_mthd, true
             safe_send ret_module, @conf.include_module_mthd, m
           else
             ret_module.send(:include, m) unless ret_module.include? m

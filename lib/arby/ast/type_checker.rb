@@ -80,7 +80,7 @@ module Arby
 
       def check_arby_module(mod, model_cls=Arby::Ast::Model)
         Module === mod &&
-          mod.respond_to?(:meta) &&
+          mod.respond_to?(:meta, true) &&
           mod.meta.is_a?(model_cls)
       end
 

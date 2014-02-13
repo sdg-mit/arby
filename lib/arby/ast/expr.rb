@@ -73,7 +73,7 @@ module Arby
 
       def self.ensure_type(expr)
         type = nil
-        expr.respond_to?(:__type) and
+        expr.respond_to?(:__type, true) and
           type = expr.__type
         if type.nil? || Arby::Ast::NoType === type
           fail "type not present in expr `#{expr}'"
@@ -130,7 +130,7 @@ module Arby
               end
             }
           end
-        when Proc 
+        when Proc
           resolve_expr e.call, parent, kind_in_parent, default_val
         when TupleSet
           if e.tuples.empty?
@@ -152,7 +152,7 @@ module Arby
             sig_cls ? sig_cls.to_arby_expr : else_cb.call
           end
         else
-          if e.respond_to? :to_arby_expr
+          if e.respond_to? :to_arby_expr, true
             al_expr = e.send :to_arby_expr
             resolve_expr(al_expr, parent, kind_in_parent, default_val, &else_cb)
           else
@@ -289,7 +289,7 @@ module Arby
         alias_method :product, :**
 
         def pick_and_apply(int_op, rel_op, *args)
-          op = if args.first.respond_to?(:__type) &&
+          op = if args.first.respond_to?(:__type, true) &&
                    args.first.__type &&
                    args.first.__type.primitive?
                  int_op
@@ -530,7 +530,7 @@ module Arby
         include MVarExpr
 
         def method_missing(sym, *args, &block)
-          if send(:respond_to?, :__parent) && p=__parent()
+          if send(:respond_to?, :__parent, true) && p=__parent()
             p.send sym, *args, &block
           elsif args.size == 1 && Arby::Dsl::ModBuilder === args.first &&
               args.first.pending_product?

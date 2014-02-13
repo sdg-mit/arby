@@ -22,7 +22,7 @@ module Arby
         mod = Module.new
         fields.each do |fld|
           fname = fld.getter_sym
-          unless self.respond_to? fname
+          unless self.respond_to?(fname, true)
             #TODO: OPT
             mod.send(:define_method, fname) do
               self.send :_join_fld, fld

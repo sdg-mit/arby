@@ -42,13 +42,13 @@ module SDGUtils
       Conf = SDGUtils::Config.new(nil, {
         :top_class        => Object,
         :visit_meth_namer => proc{|cls, cls_short_name| "visit_#{cls_short_name}"},
-        :default_return   => proc{nil}
+        :default_return   => proc{|*a| nil}
       })
 
       def initialize(visitor_obj=nil, opts={}, &visitor_blk)
         @visitor = Visitor.mk_visitor_obj(visitor_obj, &visitor_blk)
-        @conf = Conf.extend(opts)
-        @stack = []
+        @conf    = Conf.extend(opts)
+        @stack   = []
       end
 
       # Assumes that the first argument is the node to be visited.
@@ -64,7 +64,7 @@ module SDGUtils
           }.each do |cls|
             kind = cls.relative_name.downcase
             meth = @conf.visit_meth_namer[cls, kind].to_sym
-            if @visitor.respond_to? meth
+            if @visitor.respond_to?(meth, true)
               meth_arity = @visitor.method(meth).arity
               meth_arity = -meth_arity if meth_arity < 0
               meth_args = [node, @stack[-2]][0...meth_arity]

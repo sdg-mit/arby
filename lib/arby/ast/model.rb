@@ -178,7 +178,7 @@ module Arby
 
         types.each do |type|
           type.each do |utype|
-            col_type = utype.respond_to?(:cls) && utype.cls
+            col_type = utype.respond_to?(:cls, true) && utype.cls
             if col_type.is_a? UnaryType::ColType::UnresolvedRefColType
               logger.debug "[resolve_fields]   trying to resolve #{col_type}..."
               cls = Arby::Resolver.resolve_type(col_type)

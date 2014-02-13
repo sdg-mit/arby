@@ -50,8 +50,8 @@ module SDGUtils
 
       def parse_string(str)
         parser = Parser::CurrentRuby.new
-        parser.diagnostics.consumer = lambda{ |diag| 
-          send :on_parse_error, diag if respond_to?(:on_parse_error)
+        parser.diagnostics.consumer = lambda{ |diag|
+          send :on_parse_error, diag if respond_to?(:on_parse_error, true)
         }
 
         buffer = Parser::Source::Buffer.new('(string)')
@@ -93,7 +93,7 @@ module SDGUtils
 
       def read_expression(node)
         node and
-          node.respond_to? :location and
+          node.respond_to? :location, true and
           src = node.location and
           src.expression
       end
@@ -142,7 +142,7 @@ module SDGUtils
         nodes_bottomup = traverse_nodes(node).reverse
         nodes_bottomup.each do |node, parent|
           if node2anno[node.__id__]
-            new_src = yield(node, parent, node2anno) 
+            new_src = yield(node, parent, node2anno)
             node2anno[node.__id__].src = new_src if new_src
           end
         end
@@ -205,7 +205,7 @@ module SDGUtils
                else m.to_sym
                end
         default_ret = opts[:default_ret] || :next
-        if visitor.respond_to? meth
+        if visitor.respond_to? meth, true
           visitor.send meth, node, parent
         else
           default_ret

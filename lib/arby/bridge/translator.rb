@@ -34,8 +34,8 @@ module Arby
           [name, _to_tuple_set(model, tmpi, inst.skolem(name))]
         }
 
-        fld_map    = Hash[flds]
-        skolem_map = Hash[skolems]
+        fld_map    = Hash[flds.compact]
+        skolem_map = Hash[skolems.compact]
 
         # restore field values
         atoms.select{|a| a.is_a?(Arby::Ast::ASig)}.each do |atom|

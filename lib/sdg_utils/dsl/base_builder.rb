@@ -76,7 +76,8 @@ module SDGUtils
       def apply_modifier(modifier, expected_cls=nil, *args, &block)
         build self, &block
         return_result(:array).each do |obj|
-          unless check_type(obj, expected_cls) && obj.respond_to?(:"set_#{modifier}")
+          unless check_type(obj, expected_cls) &&
+                 obj.respond_to?(:"set_#{modifier}", true)
             raise_illegal_modifier(obj, modifier)
           end
           obj.send :"set_#{modifier}", *args
@@ -187,7 +188,7 @@ module SDGUtils
         body_eval_proc = proc {
           # body_src = SDGUtils::Lambda::Sourcerer.proc_to_src(body) rescue nil
           ebm = @conf.eval_body_mthd
-          eval_body_mthd_name = obj.respond_to?(ebm) ? ebm : default_eval_mthd
+          eval_body_mthd_name = obj.respond_to?(ebm, true) ? ebm : default_eval_mthd
           begin
             @in_body = true
             obj.send eval_body_mthd_name, &body
@@ -211,7 +212,7 @@ module SDGUtils
       end
 
       def safe_send(obj, sym, *args)
-        obj.send sym, *args if obj.respond_to? sym
+        obj.send sym, *args if obj.respond_to?(sym, true)
       end
     end
 

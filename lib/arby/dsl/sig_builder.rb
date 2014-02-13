@@ -57,9 +57,9 @@ module Arby
         return_result(:array).each do |sig|
           ModelBuilder.in_model_body?           and
             mod = ModelBuilder.get.scope_module and
-            mod.respond_to? :meta               and
+            mod.respond_to? :meta, true         and
             meta = mod.meta                     and
-            meta.respond_to? :add_sig           and
+            meta.respond_to? :add_sig, true     and
             meta.add_sig(sig)
         end
         ans

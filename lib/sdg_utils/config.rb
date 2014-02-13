@@ -56,7 +56,8 @@ module SDGUtils
     end
 
     def [](key)
-      if mykey?(key)
+      myk = mykey?(key)
+      if myk
         get_my_property(key)
       elsif @parent_config
         @parent_config[key]

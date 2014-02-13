@@ -13,6 +13,9 @@ end
 module SDGUtils
   module DSL
     class SyntaxError
+      def self.new(*args)       Arby::Dsl::SyntaxError.new(*args) end
+      def self.exception(*args) Arby::Dsl::SyntaxError.exception(*args) end
+
       def class
         Arby::Dsl::SyntaxError
       end
