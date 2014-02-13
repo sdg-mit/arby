@@ -5,7 +5,7 @@ aRby demonstrates the benefits of having a declarative modeling language (backed
 
 ## Installation Instructions
 
-aRby **requires** Ruby 1.9.3.  If you already have a different Ruby installations, you might want to consider using the Ruby Version Manager (rvm) to manager your Ruby versions, e.g., 
+aRby **requires** Ruby 1.9.3.  If you are currently using a different Ruby installation, you might want to consider installing the Ruby Version Manager (rvm) to manage your rubies, e.g., 
 
  ```bash
  rvm install 1.9.3
